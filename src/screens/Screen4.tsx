@@ -12,7 +12,7 @@ export default function Screen4() {
 		<View style={[styles.container, {backgroundColor: lanternOn ? Colors.terceira : Colors.segunda,}]}>
 			<TouchableOpacity onPress={() => setLanternOn(!lanternOn)}>
 				
-				<CardLogo texto={lanternOn ? "Desligar Lanterna" : "Ligar Lanterna"} />
+				<CardLogo texto={lanternOn ? "Desligar Sinal" : "Ligar Sinal"} />
 			</TouchableOpacity>
 			
 

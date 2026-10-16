@@ -32,6 +32,9 @@
         <img src=".github/assets/print1.png" height="400" alt="Preview versão celular" />
       </td>
       <td align="center">
+        <img src=".github/assets/print2.png" height="400" alt="Preview versão celular" />
+      </td>
+      <td align="center">
         <img src=".github/assets/print2.jpg" height="400" alt="Preview versão tablet" />
       </td>
     </tr>
@@ -41,6 +44,7 @@
 ## 📱 Features
 ✅ Gera senhas aleatórias;</br>
 ✅ Permite copiar para área de transferência;
+✅ Permite ligar a lanterna do celular para gerar um Bat Sinal;
 
 ## Tecnologias
 
