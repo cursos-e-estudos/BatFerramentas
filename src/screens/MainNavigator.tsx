@@ -4,6 +4,7 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import Screen1 from "./Screen1";
 import Screen2 from "./Screen2";
 import Screen3 from "./Screen3";
+import Screen4 from "./Screen4";
 
 // Cria o navegador sem passar nenhuma tipagem complexa de rotas
 const TopTab = createMaterialTopTabNavigator();
@@ -14,7 +15,6 @@ import { Colors } from "../components";
 export default function MainNavigator() {
 	return (
 		<TopTab.Navigator
-			initialRouteName="Minha Versão"
 			screenOptions={{
 				// Barra de Abas (Tab Bar)
 				tabBarStyle: {
@@ -34,8 +34,8 @@ export default function MainNavigator() {
 				},
 			}}
 		>
-			{/*
-				<TopTab.Screen name="Minha Versão" component={Screen1} />*/}
+			
+			<TopTab.Screen name="Bat Sinal" component={Screen4} />
 			<TopTab.Screen name="Versão tutorial" component={Screen3} />
 			<TopTab.Screen name="Cores 🟥🟩🟦" component={Screen2} />
 		</TopTab.Navigator>

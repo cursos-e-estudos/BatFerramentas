@@ -2,7 +2,7 @@ import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "./Colors";
 
-export default function CardLogo() {
+export default function CardLogo({ texto }: { texto: string }) {
 	return (
 		<View style={styles.container}>
 			<Icon
@@ -12,7 +12,7 @@ export default function CardLogo() {
 				style={{ margin: -20 }}
 			/>
 			<Text style={{ fontSize: 20, color: Colors.quinta, fontWeight: "bold" }}>
-				BatSenhas
+				{texto ? texto : "BatSenhas"}
 			</Text>
 		</View>
 	);
