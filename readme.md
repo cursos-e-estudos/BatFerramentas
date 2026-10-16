@@ -35,6 +35,9 @@
         <img src=".github/assets/print2.png" height="400" alt="Preview versão celular" />
       </td>
       <td align="center">
+        <img src=".github/assets/profile.png" height="400" alt="Preview versão celular" />
+      </td>
+      <td align="center">
         <img src=".github/assets/print2.jpg" height="400" alt="Preview versão tablet" />
       </td>
     </tr>
@@ -53,6 +56,6 @@
 
 ## Autor
 
-| [<img src="https://avatars.githubusercontent.com/u/29991853?s=96&v=4"><br><sub>Biel Souza</sub>](https://github.com/felipeAguiarCode) |
+| [<img src="https://avatars.githubusercontent.com/u/29991853?s=96&v=4"><br><sub>Biel Souza</sub>](https://github.com/souvitorgabriel) |
 | :---------------------------------------------------------------------------------------------------------------------------------------: |
 |                                             [Linkedin](www.linkedin.com/in/gabriel-souza-mobiledev)                                             |

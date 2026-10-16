@@ -1,4 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
 	KeyboardAvoidingView,
 	Platform,
@@ -10,18 +11,20 @@ import MainNavigator from "./src/screens/MainNavigator";
 
 export default function App() {
 	return (
-		<SafeAreaView style={styles.container}>
-			<KeyboardAvoidingView
-				behavior={Platform.OS === "ios" ? "padding" : "height"}
-				style={styles.container}
-			>
-				<ScrollView contentContainerStyle={styles.scroll}>
-					<NavigationContainer>
-						<MainNavigator />
-					</NavigationContainer>
-				</ScrollView>
-			</KeyboardAvoidingView>
-		</SafeAreaView>
+		<GestureHandlerRootView style={styles.container}>
+			<SafeAreaView style={styles.container}>
+				<KeyboardAvoidingView
+					behavior={Platform.OS === "ios" ? "padding" : "height"}
+					style={styles.container}
+				>
+					<ScrollView contentContainerStyle={styles.scroll}>
+						<NavigationContainer>
+							<MainNavigator />
+						</NavigationContainer>
+					</ScrollView>
+				</KeyboardAvoidingView>
+			</SafeAreaView>
+		</GestureHandlerRootView>
 	);
 }
 
