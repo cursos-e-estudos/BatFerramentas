@@ -1,12 +1,17 @@
-import * as Clipboard from "expo-clipboard";
-import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { CardLogo, CardTextInput, Colors, MyButton } from "../components";
-import {CameraView} from "expo-camera";
+import { useFocusEffect } from "@react-navigation/native";
+import { CameraView } from "expo-camera";
+import { useCallback, useState } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { CardLogo, Colors } from "../components";
 
 export default function Screen4() {
-
 	const [lanternOn, setLanternOn] = useState(false);
+
+	useFocusEffect(
+		useCallback(() => {
+			return () => setLanternOn(false);
+		}, []),
+	);
 
 	return (
 		<View style={[styles.container, {backgroundColor: lanternOn ? Colors.terceira : Colors.segunda,}]}>
