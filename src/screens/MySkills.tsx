@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Animated, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Colors } from "../components";
 
 const skillGroups = [
@@ -30,6 +31,13 @@ const skillGroups = [
 
 export default function MySkills() {
 	const [avatarFailed, setAvatarFailed] = useState(false);
+	const [animationRun, setAnimationRun] = useState(0);
+
+	useFocusEffect(
+		useCallback(() => {
+			setAnimationRun((currentRun) => currentRun + 1);
+		}, []),
+	);
 
 	return (
 		<ScrollView
@@ -59,10 +67,7 @@ export default function MySkills() {
 				</View>
 			</View>
 
-			<View style={styles.levelLegend}>
-				<Text style={styles.legendTitle}>NÍVEL ATUAL</Text>
-				<Text style={styles.legendCopy}>Em evolução, projeto a projeto.</Text>
-			</View>
+			
 
 			{skillGroups.map((group, groupIndex) => (
 				<View key={group.name} style={styles.group}>
@@ -76,45 +81,112 @@ export default function MySkills() {
 					</View>
 					<View style={styles.skillList}>
 						{group.skills.map((skill) => (
-							<View key={skill.name} style={styles.skillRow}>
-								<View style={styles.branch}>
-									<View style={styles.branchLine} />
-									<View style={styles.branchNode} />
-								</View>
-								<View style={styles.skillBody}>
-									<View style={styles.skillLabels}>
-										<Text style={styles.skillName}>{skill.name}</Text>
-										<Text style={styles.skillLevel}>{skill.level}</Text>
-									</View>
-									<View
-										accessibilityLabel={`${skill.name}: ${skill.level}`}
-										accessibilityRole="progressbar"
-										accessibilityValue={{
-											min: 0,
-											max: 10,
-											now: skill.segments,
-										}}
-										style={styles.meter}
-									>
-										{Array.from({ length: 10 }, (_, index) => (
-											<View
-												key={`${skill.name}-${index}`}
-												style={[
-													styles.meterSegment,
-													index < skill.segments
-														? styles.meterSegmentActive
-														: styles.meterSegmentInactive,
-												]}
-											/>
-										))}
-									</View>
-								</View>
-							</View>
+							<AnimatedSkillRow
+								key={skill.name}
+								skill={skill}
+								animationRun={animationRun}
+								rowDelay={0}
+								styles={styles}
+							/>
 						))}
 					</View>
 				</View>
 			))}
+			<View style={styles.levelLegend}>
+				<Text style={styles.legendTitle}>NÍVEL ATUAL</Text>
+				<Text style={styles.legendCopy}>Em evolução, projeto a projeto.</Text>
+			</View>
 		</ScrollView>
+	);
+}
+
+function AnimatedSkillRow({
+	skill,
+	animationRun,
+	rowDelay,
+	styles,
+}: {
+	skill: { name: string; level: string; segments: number };
+	animationRun: number;
+	rowDelay: number;
+	styles: any;
+}) {
+	const [filledSegments, setFilledSegments] = useState(0);
+	const [showLevel, setShowLevel] = useState(false);
+	const levelOpacity = useRef(new Animated.Value(0)).current;
+
+	useEffect(() => {
+		const timers: ReturnType<typeof setTimeout>[] = [];
+
+		setFilledSegments(0);
+		setShowLevel(false);
+		levelOpacity.setValue(0);
+
+		timers.push(
+			setTimeout(() => {
+				for (let segment = 1; segment <= skill.segments; segment += 1) {
+					timers.push(
+						setTimeout(() => setFilledSegments(segment), segment * 80),
+					);
+				}
+
+				timers.push(
+					setTimeout(() => {
+						setShowLevel(true);
+						Animated.timing(levelOpacity, {
+							toValue: 1,
+							duration: 260,
+							useNativeDriver: true,
+						}).start();
+					}, skill.segments * 80 + 180),
+				);
+			}, rowDelay),
+		);
+
+		return () => timers.forEach(clearTimeout);
+	}, [animationRun, levelOpacity, rowDelay, skill.segments]);
+
+	return (
+		<View style={styles.skillRow}>
+			<View style={styles.branch}>
+				<View style={styles.branchLine} />
+				<View style={styles.branchNode} />
+			</View>
+			<View style={styles.skillBody}>
+				<View style={styles.skillLabels}>
+					<Text style={styles.skillName}>{skill.name}</Text>
+					{showLevel ? (
+						<Animated.Text
+							style={[styles.skillLevel, { opacity: levelOpacity }]}
+						>
+							{skill.level}
+						</Animated.Text>
+					) : null}
+				</View>
+				<View
+					accessibilityLabel={`${skill.name}: ${skill.level}`}
+					accessibilityRole="progressbar"
+					accessibilityValue={{
+						min: 0,
+						max: 10,
+						now: filledSegments,
+					}}
+					style={styles.meter}
+				>
+					{Array.from({ length: 10 }, (_, index) => (
+						<View
+							key={`${skill.name}-${index}`}
+							style={[
+								styles.meterSegment,
+								index < filledSegments
+									? styles.meterSegmentActive
+									: styles.meterSegmentInactive,
+							]}
+						/>
+					))}
+				</View>
+			</View>
+		</View>
 	);
 }
 
