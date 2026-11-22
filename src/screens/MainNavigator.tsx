@@ -42,9 +42,6 @@ export default function MainNavigator() {
 					marginHorizontal: 10,
 					borderRadius: 8,
 				},
-				sceneContainerStyle: {
-					backgroundColor: Colors.segunda,
-				},
 			}}
 		>
 			<Drawer.Screen name="Home" component={Home} />

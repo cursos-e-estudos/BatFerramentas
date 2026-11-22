@@ -23,7 +23,7 @@ export const Box = {
 			style={{ backgroundColor: Colors.segunda, borderColor: Colors.segunda }}
 		/>
 	),
-	Tres: ({ children }: { children: React.ReactNode }) => (
+	Tres: ({ children }: { children?: React.ReactNode }) => (
 		<BoxContainer
 			style={{ backgroundColor: Colors.terceira, borderColor: Colors.terceira }}
 		>

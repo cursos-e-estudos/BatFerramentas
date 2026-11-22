@@ -2,7 +2,7 @@ import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "./Colors";
 
-export default function CardLogo({ texto }: { texto: string }) {
+export default function CardLogo({ texto }: { texto?: string }) {
 	return (
 		<View style={styles.container}>
 			<Icon
