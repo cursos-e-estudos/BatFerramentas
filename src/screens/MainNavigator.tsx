@@ -8,6 +8,7 @@ import Screen3 from "./Screen3";
 import Screen4 from "./Screen4";
 import Home from "./Home";
 import MySkills from "./MySkills";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 // Cria o navegador sem passar nenhuma tipagem complexa de rotas
 const TopTab = createMaterialTopTabNavigator();
@@ -47,6 +48,7 @@ export default function MainNavigator() {
 			<Drawer.Screen name="Home" component={Home} />
 			<Drawer.Screen name="My Skills" component={MySkills} />
 			<Drawer.Screen name="Top Tabs" component={TopTabComponent} />
+			<Drawer.Screen name="Política de Privacidade" component={PrivacyPolicy} />
 		</Drawer.Navigator>
 	);
 }
