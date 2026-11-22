@@ -25,9 +25,9 @@ const links = [
 		icon: "linkedin" as const,
 	},
 	{
-		label: "BatSenhas",
+		label: "BatFerramentas",
 		detail: "Repositório deste projeto",
-		url: "https://github.com/cursos-e-estudos/BatSenhas",
+		url: "https://github.com/cursos-e-estudos/BatFerramentas",
 		icon: "external-link" as const,
 	},
 ];
