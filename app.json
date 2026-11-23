@@ -2,8 +2,7 @@
   "expo": {
     "name": "Bat Ferramentas",
     "slug": "bat-ferramentas",
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "version": "1.0.1",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
@@ -16,6 +15,8 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
+      "package": "com.pacienciaEstudio.BatTools",
+      "versionCode": 2,
       "predictiveBackGestureEnabled": false
     },
     "web": {
@@ -23,7 +24,16 @@
     },
     "plugins": [
       "expo-status-bar",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableMinifyInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          }
+        }
+      ]
     ]
   }
 }
